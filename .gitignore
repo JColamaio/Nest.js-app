@@ -117,6 +117,7 @@ dist
 .dynamodb/
 # Postgresql Local files
 /data/db
+orm.config.ts
 
 # TernJS port file
 .tern-port
