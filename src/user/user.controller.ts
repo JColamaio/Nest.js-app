@@ -8,7 +8,7 @@ import {
   Patch,
   Delete,
 } from "@nestjs/common";
-import { CreateUserDto } from "./dto/createUserDto";
+import { CreateUserDto, UpdateUserDto } from "./dto/createUserDto";
 import { UserService } from "./user.service";
 import { identity } from "rxjs";
 import { CommentService } from "src/comment/comment.service";
@@ -21,7 +21,7 @@ export class UserController {
   ) {}
 
   @Get(":id")
-  findOne(@Param("id") id: string) {
+  findOne(@Param("id") id: number) {
     return this.userService.findOne(id);
   }
   @Get(":id/comments")
@@ -32,7 +32,9 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
-  // @Patch()
-  // @Put()
+  @Put(":id")
+  update(@Param("id") id:number, @Body() UpdateUserDto:UpdateUserDto){
+    return this.userService.update(id, UpdateUserDto)
+  }
   // @Delete()
 }
